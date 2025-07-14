@@ -1,13 +1,14 @@
 name: Build signed app
 on:
-  pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
-    tags:
-      - v*
+  # pull_request:
+  #   branches:
+  #     - master
+  # push:
+  #   branches:
+  #     - master
+  #   tags:
+  #     - v*
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -20,7 +21,7 @@ jobs:
 
     strategy:
       matrix:
-        flavor: [Rootless, Root]
+        flavor: [Plugin]
         
     steps:
       - id: flavor
