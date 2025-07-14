@@ -124,7 +124,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: "${{ matrix.flavor }}JamesDSP-arm64-v8a-preview_apk"
-          path: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}Full/${{ env.BUILD_TYPE }}/*arm64-v8a-${{ env.BUILD_TYPE }}-signed.apk
+          path: app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}Full/${{ env.BUILD_TYPE }}/*arm64-v8a-${{ env.BUILD_TYPE }}*.apk
        
       - name: Deploy root flavor APKs to the server
         if: ${{ steps.flavor.outputs.lowercase == 'root' && startsWith(github.ref, 'refs/tags/') && github.repository == 'timschneeb/RootlessJamesDSP' }}
@@ -133,7 +133,7 @@ jobs:
             username: 'tim'
             server: 'srv1.timschneeberger.me'
             ssh_private_key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }} 
-            local_path: "app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}Full/${{ env.BUILD_TYPE }}/*universal-${{ env.BUILD_TYPE }}-signed.apk"
+            local_path: "app/build/outputs/apk/${{ steps.flavor.outputs.lowercase }}Full/${{ env.BUILD_TYPE }}/*universal-${{ env.BUILD_TYPE }}*.apk"
             remote_path: '/srv/http/nightly.timschneeberger.me/jamesdsp-rootfull'
             sftpArgs: '-o ConnectTimeout=5'
        
@@ -162,7 +162,7 @@ jobs:
           name: RootlessJamesDSP ${{ env.VERSION_TAG }}
           body: "${{ steps.changelog.outputs.changelog }} &#x20; ${{ steps.changelog_post.outputs.contents }}"
           #files: |
-          #   app/build/outputs/apk/rootlessFull/${{ env.BUILD_TYPE }}/*-signed.apk
+          #   app/build/outputs/apk/rootlessFull/${{ env.BUILD_TYPE }}/*.apk
           draft: true
           prerelease: false
         env:
