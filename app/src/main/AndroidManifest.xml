@@ -23,6 +23,10 @@
         <package android:name="moe.shizuku.privileged.api" />
     </queries>
 
+    <meta-data android:name="xposedmodule" android:value="true"/>
+    <meta-data android:name="xposeddescription" android:value="JamesDSP LSPosed Module for Retro Music Player"/>
+    <meta-data android:name="xposedminversion" android:value="93"/>
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
