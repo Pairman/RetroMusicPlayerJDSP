@@ -11,6 +11,10 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "2.1.0"
 }
 
+repositories {
+    maven("https://api.xposed.info")
+}
+
 android {
 
     val SUPPORTED_ABIS = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
